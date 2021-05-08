@@ -1,0 +1,39 @@
+<nz-header>
+  <div class="app-header">
+    <div nz-row>
+      <div nz-col nzSpan="8">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <i
+            class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          ></i>
+        </span>
+      </div>
+      <div nz-col nzSpan="6" style="margin-right: 4%">
+        <div>
+          <nz-input-group [nzPrefix]="searchIcon">
+            <input theme="dp-material" nz-input />
+          </nz-input-group>
+          <ng-template #searchIcon>
+            <i nz-icon nzType="search" nzTheme="outline"></i>
+          </ng-template>
+        </div>
+      </div>
+      <div nz-col nzSpan="6" style="margin-right: 4%">
+        <div>
+          <nz-page-header class="site-page-header">
+            <nz-avatar
+              nz-page-header-avatar
+              nzSrc="https://thumbs.dreamstime.com/b/administrator-man-user-abstract-flat-color-icon-template-148864838.jpg"
+            ></nz-avatar>
+            </nz-avatar>
+            <nz-page-header-subtitle
+              >This is a subtitle</nz-page-header-subtitle
+            >
+          </nz-page-header>
+        </div>
+      </div>
+    </div>
+  </div>
+</nz-header>

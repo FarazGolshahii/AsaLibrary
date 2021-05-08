@@ -1,3 +1,4 @@
+import { HeaderComponent } from './layout/header/header.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -17,11 +18,14 @@ import { DpDatePickerModule } from 'ng2-jalali-date-picker';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { ChartsModule } from 'ng2-charts';
 import { RouterModule } from '@angular/router';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +41,8 @@ registerLocaleData(en);
     BrowserModule,
     RouterModule,
     ChartsModule,
+    NzGridModule,
+    NzPageHeaderModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

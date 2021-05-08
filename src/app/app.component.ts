@@ -1,7 +1,6 @@
-import { AfterViewInit, Component } from '@angular/core';
-import { Chart } from 'chart.js';
+import { HeaderComponent } from './layout/header/header.component';
+import { Component } from '@angular/core';
 import * as moment from 'jalali-moment';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,11 +17,15 @@ export class AppComponent{
   public pieChartType = 'pie';
   ngOnInit() {  
     this.minDate = moment('1395-11-22', 'jYYYY,jMM,jDD');
+    
   };
   datePickerConfig = {
     drops: 'down',
     opens:'right',
     format: 'YY/MM/DD',
     onOpenDelay:'0',
+}
+toggleCollapsed(): void {
+  this.isCollapsed = !this.isCollapsed;
 }
 }

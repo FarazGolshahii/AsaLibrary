@@ -43,23 +43,11 @@
     </ul>
   </nz-sider>
   <nz-layout>
-    <nz-header>
-      <div class="app-header">
-        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-          <i
-            class="trigger"
-            nz-icon
-            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-          ></i>
-        </span>
-      </div>
-    </nz-header>
+      <app-header></app-header>
     <nz-content>
       <div class="inner-content">
-        
-          <div>
-            
-          <nz-input-group [nzPrefix]="dateicon" style="width: 18%;">
+        <div>
+          <nz-input-group [nzPrefix]="dateicon" style="width: 18%">
             <input
               theme="dp-material"
               [dpDayPicker]="datePickerConfig"
@@ -72,14 +60,14 @@
         </div>
 
         <div style="display: block">
-          <canvas baseChart
-                  [data]="pieChartData"
-                  [labels]="pieChartLabels"
-                  [chartType]="pieChartType"
-                  >
+          <canvas
+            baseChart
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"
+          >
           </canvas>
         </div>
-        
       </div>
     </nz-content>
   </nz-layout>
