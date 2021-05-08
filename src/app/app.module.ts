@@ -13,7 +13,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
-
+import { DpDatePickerModule } from 'ng2-jalali-date-picker';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { ChartsModule } from 'ng2-charts';
+import { RouterModule } from '@angular/router';
 registerLocaleData(en);
 
 @NgModule({
@@ -28,7 +31,12 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     IconsProviderModule,
     NzLayoutModule,
-    NzMenuModule
+    NzMenuModule,
+    DpDatePickerModule,
+    NzInputModule,
+    BrowserModule,
+    RouterModule,
+    ChartsModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
