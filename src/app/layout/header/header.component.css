@@ -12,9 +12,10 @@
   }
   
   .menu-sidebar {
-    position: relative;
+    position: fixed;
     z-index: 10;
-    min-height: 100vh;
+    width: 40px;
+    height: 100%;
     box-shadow: 2px 0 6px rgba(0,21,41,.35);
   }
   
@@ -56,8 +57,21 @@
     font-family: Avenir,Helvetica Neue,Arial,Helvetica,sans-serif;
     vertical-align: middle;
   }
-  
+  .global-search-item {
+    display: flex;
+  }
+
+  .global-search-item-desc {
+    flex: auto;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .global-search-item-count {
+    flex: none;
+  }
   nz-header {
+    position: fixed;
     padding: 0;
     width: 100%;
     z-index: 2;

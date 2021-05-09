@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   isCollapsed = false;
-  constructor() { }
+  inputValue?: string;
+  searchValue:string=""
+  options: string[] = [];
+
+  onInput(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
+    if (value.length>=3) {
+      this.options = value ? [value, value + "Book", value + value + " "+ value] : [];      
+    }
+  }
+  constructor(private route:Router) { }
 
   ngOnInit(): void {
   }
-
+  Onclick(){
+    this.searchValue=this.inputValue
+    this.route.navigate(['/search'])
+    console.log(this.searchValue);
+  }
 }

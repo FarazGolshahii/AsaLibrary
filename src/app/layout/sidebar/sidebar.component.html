@@ -1,0 +1,42 @@
+<nz-sider
+    class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+  >
+    <div class="sidebar-logo">
+      <a href="https://ng.ant.design/" target="_blank">
+        <h1>Asa Library</h1>
+        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo" />
+      </a>
+    </div>
+    <ul
+      nz-menu
+      nzTheme="dark"
+      nzMode="inline"
+      [nzInlineCollapsed]="isCollapsed"
+    >
+      <li nz-submenu nzOpen nzIcon="dashboard" nzTitle="Dashboard">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/">داشبورد</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a (click)="onClick()">Monitor</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a>Workplace</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a>Basic Form</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
