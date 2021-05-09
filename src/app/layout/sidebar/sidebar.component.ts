@@ -10,8 +10,7 @@ export class SidebarComponent implements OnInit {
   isCollapsed = false;
   constructor(private router:Router) { }
   isactive=true;
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   onClick(){
     this.router.navigate(['/search']);
   }

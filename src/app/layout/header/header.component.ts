@@ -7,7 +7,11 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  
   @Input() isCollapsed = false;
+  toggleCollapsed(): void {
+    this.isCollapsed = !this.isCollapsed;
+  }
   inputValue?: string;
   searchValue:string=""
   options: string[] = [];
