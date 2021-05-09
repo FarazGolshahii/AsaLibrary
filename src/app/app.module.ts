@@ -20,12 +20,24 @@ import { ChartsModule } from 'ng2-charts';
 import { RouterModule } from '@angular/router';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { BookListComponent } from './component/book-list/book-list.component';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzRateModule } from 'ng-zorro-antd/rate';
+import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    SidebarComponent,
+    BookListComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +54,15 @@ registerLocaleData(en);
     RouterModule,
     ChartsModule,
     NzGridModule,
-    NzPageHeaderModule
+    NzPageHeaderModule,
+    NzCardModule,
+    NzAvatarModule,
+    NzDropDownModule,
+    NzListModule,
+    NzSpaceModule,
+    NzRateModule,
+    NzAutocompleteModule,
+    NzButtonModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

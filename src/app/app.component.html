@@ -1,75 +1,23 @@
-<script src="node_modules/chart.js/src/chart.js"></script>
 <nz-layout class="app-layout">
-  <nz-sider
-    class="menu-sidebar"
-    nzCollapsible
-    nzWidth="256px"
-    nzBreakpoint="md"
-    [(nzCollapsed)]="isCollapsed"
-    [nzTrigger]="null"
-  >
-    <div class="sidebar-logo">
-      <a href="https://ng.ant.design/" target="_blank">
-        <h1>Asa Library</h1>
-        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo" />
-      </a>
+  <div nz-row>
+    <!-- sidebar -->
+    <div nz-col>
+      <app-sidebar></app-sidebar>
     </div>
-    <ul
-      nz-menu
-      nzTheme="dark"
-      nzMode="inline"
-      [nzInlineCollapsed]="isCollapsed"
-    >
-      <li nz-submenu nzOpen nzIcon="dashboard" nzTitle="Dashboard">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/">داشبورد</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/charts">Monitor</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a>Workplace</a>
-          </li>
-        </ul>
-      </li>
-      <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a>Basic Form</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </nz-sider>
-  <nz-layout>
+    <!-- header -->
+    <div nz-col >
       <app-header></app-header>
-    <nz-content>
-      <div class="inner-content">
-        <div>
-          <nz-input-group [nzPrefix]="dateicon" style="width: 18%">
-            <input
-              theme="dp-material"
-              [dpDayPicker]="datePickerConfig"
-              nz-input
-            />
-          </nz-input-group>
-          <ng-template #dateicon>
-            <i nz-icon nzType="search" nzTheme="outline"></i>
-          </ng-template>
-        </div>
-
-        <div style="display: block">
-          <canvas
-            baseChart
-            [data]="pieChartData"
-            [labels]="pieChartLabels"
-            [chartType]="pieChartType"
-          >
-          </canvas>
-        </div>
-      </div>
-    </nz-content>
-  </nz-layout>
+    </div>
+    <!-- body -->
+    <div nz-col nzSpan="20" >
+      <nz-layout>
+        <nz-content>
+          <div class="inner-content" style="width: 104%; margin-top: 4%; margin-right: 16.7%;">
+            <router-outlet> </router-outlet>
+          </div>
+        </nz-content>
+      </nz-layout>
+    </div>
+  </div>
 </nz-layout>
-<router-outlet> </router-outlet>
+
