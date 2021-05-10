@@ -34,10 +34,17 @@
   padding-left: 24px;
   overflow: hidden;
   line-height: 64px;
-  background: #1890ff;
+  background: rgb(240, 240, 240);
   transition: all .3s;
 }
 
+[nz-menu-item]{
+  background-color: transparent;
+  display: flex; 
+  direction: rtl;
+  padding-top: 20px;
+  height: 60px;
+}
 .sidebar-logo img {
   display: inline-block;
   height: 32px;
