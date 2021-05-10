@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./book-list.component.css'],
 })
 export class BookListComponent implements OnInit {
+  current = 1;
+  TotalData=12;
   BookList: BookList[] = [
     {
       id:1,
@@ -41,7 +43,7 @@ export class BookListComponent implements OnInit {
       imgSrc: 'https://m.media-amazon.com/images/I/410K3XZZ29L._AC_UY218_.jpg',
     },
     {
-      id:1,
+      id:5,
       name: 'Mastering Algorithms with C: Useful Techniques from Sorting to Encryption',
       category: ['Sports','History','Medical Books'],
       author: ['Mark A. Weiss', ' Robert Sedgewick '],
@@ -49,7 +51,7 @@ export class BookListComponent implements OnInit {
       imgSrc: 'https://m.media-amazon.com/images/I/71-sAW8H9RL._AC_UY218_.jpg',
     },
     {
-      id:2,
+      id:6,
       name: 'Algorithms in C, Parts 1-5 (Bundle): Fundamentals, Data Structures, Sorting, Searching, and Graph Algorithms',
       category: ['science','Business & Money','Children'],
       author: ['Kyle Loudon'],
@@ -57,7 +59,7 @@ export class BookListComponent implements OnInit {
       imgSrc: 'https://m.media-amazon.com/images/I/51+a0Bec5wL._AC_UY218_.jpg',
     },
     {
-      id:3,
+      id:7,
       name: 'Algorithms in C, Parts 1-4: Fundamentals, Data Structures, Sorting, Searching  ',
       category: ['chemistery','Arts & Photography','Business & Money'],
       author: ['Kyle Loudon', 'Mark A. Weiss', "Robert Sedgewick" ],
@@ -65,7 +67,7 @@ export class BookListComponent implements OnInit {
       imgSrc: 'https://m.media-amazon.com/images/I/41XKeoPrNXL._AC_UY218_.jpg',
     },
     {
-      id:4,
+      id:8,
       name: 'Data Structures and Algorithm Analysis in C (2nd Edition)',
       category: ['programming','Romance'],
       author: ['aarg', 'wegg'],
@@ -73,7 +75,7 @@ export class BookListComponent implements OnInit {
       imgSrc: 'https://m.media-amazon.com/images/I/410K3XZZ29L._AC_UY218_.jpg',
     },
     {
-      id:1,
+      id:9,
       name: 'Mastering Algorithms with C: Useful Techniques from Sorting to Encryption',
       category: ['Sports','History','Medical Books'],
       author: ['Mark A. Weiss', ' Robert Sedgewick '],
@@ -81,7 +83,7 @@ export class BookListComponent implements OnInit {
       imgSrc: 'https://m.media-amazon.com/images/I/71-sAW8H9RL._AC_UY218_.jpg',
     },
     {
-      id:2,
+      id:10,
       name: 'Algorithms in C, Parts 1-5 (Bundle): Fundamentals, Data Structures, Sorting, Searching, and Graph Algorithms',
       category: ['science','Business & Money','Children'],
       author: ['Kyle Loudon'],
@@ -89,7 +91,7 @@ export class BookListComponent implements OnInit {
       imgSrc: 'https://m.media-amazon.com/images/I/51+a0Bec5wL._AC_UY218_.jpg',
     },
     {
-      id:3,
+      id:11,
       name: 'Algorithms in C, Parts 1-4: Fundamentals, Data Structures, Sorting, Searching  ',
       category: ['chemistery','Arts & Photography','Business & Money'],
       author: ['Kyle Loudon', 'Mark A. Weiss', "Robert Sedgewick" ],
@@ -97,7 +99,7 @@ export class BookListComponent implements OnInit {
       imgSrc: 'https://m.media-amazon.com/images/I/41XKeoPrNXL._AC_UY218_.jpg',
     },
     {
-      id:4,
+      id:12,
       name: 'Data Structures and Algorithm Analysis in C (2nd Edition)',
       category: ['programming','Romance'],
       author: ['aarg', 'wegg'],

@@ -1,34 +1,55 @@
-<nz-list nzItemLayout="vertical" style="direction: ltr; ">
-  
-    <nz-list-item *ngFor="let item of BookList" class="card"  >
-      <nz-list-item-meta style="direction: rtl ">
-        <nz-list-item-meta-title >
+<nz-list
+  nzItemLayout="vertical"
+  style="direction: ltr"
+  [nzPagination]="pagination"
+>
+  <nz-list-item *ngFor="let item of BookList" class="card">
+    
+    <nz-list-item-meta style="direction: rtl">
+      <nz-list-item-meta-title>
+        <a href="{{ item.name }}"
+          ><h4>{{ item.name }}</h4></a
+        >
+      </nz-list-item-meta-title>
+      <nz-list-item-action
+        ><nz-rate [ngModel]="item.rate" nzDisabled></nz-rate
+      ></nz-list-item-action>
+      <nz-list-item-meta-description>
+        <span>موضـوع: </span>
+        <span *ngFor="let categoryItem of item.category">
+          {{ categoryItem }} ,</span
+        >
+        <br />
+        <span>نویسندگـان: </span>
+        <span *ngFor="let autherItem of item.author"> {{ autherItem }} ,</span>
+      </nz-list-item-meta-description>
+    </nz-list-item-meta>
 
-          <a href="{{ item.name }}"><h4>{{ item.name }}</h4></a>
-        </nz-list-item-meta-title>
-        <nz-list-item-action><nz-rate  [ngModel]=item.rate nzDisabled></nz-rate></nz-list-item-action>
-        <nz-list-item-meta-description >
-          <span>موضـوع: </span> <span *ngFor="let categoryItem of item.category"> {{ categoryItem }} ,</span>
-          <br>  
-          <span>نویسندگـان: </span> <span *ngFor="let autherItem of item.author"> {{ autherItem }} ,</span>
-        </nz-list-item-meta-description>    
-      </nz-list-item-meta>
-
-      <ul nz-list-item-actions class="rate" style="margin-top: 15px;">
-        <nz-list-item-action><nz-rate  [ngModel]=item.rate nzDisabled></nz-rate></nz-list-item-action>
-      </ul>
-      <nz-list-item-extra >
-        <img width="120" height="180" alt="logo" src="{{item.imgSrc}}" />
-      </nz-list-item-extra>
-    </nz-list-item>   
-  </nz-list>
-  
-
-
-
+    <ul nz-list-item-actions class="rate" style="margin-top: 15px">
+      <nz-list-item-action
+        ><nz-rate [ngModel]="item.rate" nzDisabled></nz-rate
+      ></nz-list-item-action>
+    </ul>
+    <nz-list-item-extra>
+      <img width="120" height="180" alt="logo" src="{{ item.imgSrc }}" />
+    </nz-list-item-extra>
+  </nz-list-item>
+  <ng-template
+    #pagination
+    style="display: flex !important; justify-content: center !important"
+  >
+    <nz-pagination
+      style="margin-top: 1%"
+      [nzPageIndex]="1"
+      [nzTotal]="TotalData"
+      [nzPageSize]="4"
+      [nzPageSizeOptions]="[4, 8, 12]"
+    ></nz-pagination>
+  </ng-template>
+</nz-list>
 
 <!-- card template -->
-  <!-- <nz-list nzItemLayout="vertical"  *ngFor="let item of BookList">
+<!-- <nz-list nzItemLayout="vertical"  *ngFor="let item of BookList">
     <nz-card style="width:100%; height: 300px ; margin-top: 1%; border-radius: 8px; direction: rtl;" [nzTitle]="title" [nzExtra]="extraTemplate"  class="card">
           <div nz-row>
             <div nz-col><img width="120" height="180" alt="logo" src="{{item.imgSrc}}" /></div>
