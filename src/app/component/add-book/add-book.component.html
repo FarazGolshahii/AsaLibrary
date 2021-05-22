@@ -1,0 +1,664 @@
+<div>
+  <nz-steps [nzCurrent]="current">
+    <nz-step  nzTitle="اطلاعات اولیـه"></nz-step>
+    <nz-step nzTitle="آدرس کتاب/فایل"></nz-step>
+    <nz-step nzTitle="اطلاعات تکمیلی "></nz-step>
+  </nz-steps>
+</div>
+
+<!-- Form1 -->
+<form
+  nz-form
+  [formGroup]="addBookForm1"
+  *ngIf="index == 0"
+  (ngSubmit)="submitForm1()"
+  >
+  <div class="Form1">
+    <nz-form-item>
+      <div nz-col>
+        <nz-form-label style="align-items: right" nzRequired nzFor="name"
+          >نام کتــاب</nz-form-label
+        >
+        <nz-form-control
+          style="width: 780px"
+          nzErrorTip="نام وارد شده معتبر نیست"
+        >
+          <input
+            nz-input
+            formControlName="name"
+            id="name"
+            placeholder="نام کتاب را وارد کنید"
+          />
+        </nz-form-control>
+      </div>
+    </nz-form-item>
+
+    <nz-form-item>
+      <div nz-col>
+        <nz-form-label style="align-items: right" nzFor="secondaryName"
+          >نام دوم کتــاب</nz-form-label
+        >
+        <nz-form-control
+          style="width: 780px"
+          nzErrorTip="نام وارد شده معتبر نیست"
+        >
+          <input
+            nz-input
+            formControlName="secondaryName"
+            id="secondaryName"
+            placeholder="نام دوم کتاب را وارد کنید"
+          />
+        </nz-form-control>
+      </div>
+    </nz-form-item>
+
+    <nz-form-item>
+      <div nz-row>
+        <div nz-col>
+          <nz-form-label nzRequired nzFor="category">موضــوع</nz-form-label>
+          <nz-form-control
+            style="width: 376px"
+            nzErrorTip="یک موضوع را انتخاب کنید"
+          >
+            <nz-select
+              formControlName="category"
+              id="category"
+              nzPlaceHolder="موضوع کتاب را انتخاب کنید"
+            >
+              <nz-option [nzLabel]="'ورزشی'" [nzValue]="'sports'"></nz-option>
+              <nz-option [nzLabel]="'تکنولوژی'" [nzValue]="'tech'"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </div>
+
+        <div nz-col style="margin-right: 30px">
+          <nz-form-label nzFor="edition">نســخه</nz-form-label>
+          <nz-form-control
+            style="width: 376px"
+            nzErrorTip="نسخه وارد شده معتبر نیست "
+          >
+            <input
+              nz-input
+              formControlName="edition"
+              id="edition"
+              placeholder="نسخه کتاب را وارد کنید"
+            />
+          </nz-form-control>
+        </div>
+      </div>
+    </nz-form-item>
+
+    <nz-form-item>
+      <div nz-row>
+        <div nz-col>
+          <nz-form-label style="margin-right: 34px" nzRequired nzFor="author"
+            >نویسندگان</nz-form-label
+          >
+          <nz-form-control
+            style="width: 368px; margin-right: 34px"
+            nzErrorTip="نام وارد شده معتبر نیست"
+          >
+            <nz-select
+              formControlName="author"
+              nz-button
+              nzMode=""
+              [nzTokenSeparators]="[',']"
+              nzPlaceHolder="نویسنده مورد نظر را انتخاب کنید"
+            >
+              <nz-option
+                [suffixTemplateInfo]="suffixTemplateInfo"
+                *ngFor="let item of listOfAuthor"
+                [nzLabel]="item"
+                [nzValue]="item"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </div>
+        <div nz-col style="transform: translate(+73%, 0%)">
+          <button
+          type="button"
+            nz-button
+            nzType="primary"
+            nzShape="circle"
+            (click)="showAuthorModal()"
+            style="
+              margin-top: 32px;
+              width: 32px;
+              height: 32px;
+              font-size: large;
+              font-weight: bold;
+              padding-top: 0px;
+            "
+          >
+            +
+          </button>
+          <nz-modal
+      [(nzVisible)]="isVisibleAuthor"
+      nzTitle="افزودن نویسنده"
+      nzCentered
+      (nzOnCancel)="closeAuthorModal()"
+      [nzFooter]="null"
+    >
+      <ng-container *nzModalContent>
+        <nz-input-group
+        style="direction: rtl"
+        [nzPrefix]="prefixTemplateUser"
+        nzFooter="modalFooter"
+      >
+        <input
+          #inputt
+          style="margin-right: 4px"
+          type="text"
+          nz-input
+          placeholder="نام نویسنده مورد نظر را وارد کنید"
+        />
+        
+      </nz-input-group>
+      <div nz-row nzJustify="center" style="margin-top: 20px;">
+        <div nz-col>
+          <button
+            nz-button
+            [nzType]="'primary'"
+            (click)="
+            closeAuthorModal(); submitAuthor(inputt.value);
+            "
+          >
+            افزودن
+          </button>
+        </div>
+      </div>
+      <ng-template #prefixTemplateUser
+        ><i nz-icon nzType="user"></i
+      ></ng-template>
+      </ng-container>
+    </nz-modal>
+        </div>
+
+        <div nz-col>
+          <nz-form-label style="margin-right: 0px" nzFor="translator"
+            >مترجمان</nz-form-label
+          >
+          <nz-form-control
+            style="width: 368px; margin-right: 0px"
+            nzErrorTip="نام وارد شده معتبر نیست"
+          >
+            <nz-select
+              formControlName="translator"
+              nz-button
+              nzAllowClear
+              nzMode=""
+              [nzTokenSeparators]="[',']"
+              nzPlaceHolder="مترجم مورد نظر را انتخاب کنید"
+            >
+              <nz-option
+                [suffixTemplateInfo]="suffixTemplateInfo"
+                *ngFor="let item of listOfTranslator"
+                [nzLabel]="item"
+                [nzValue]="item"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </div>
+        <div nz-col style="transform: translate(+73%, 0%)">
+          <button
+          type="button"
+            nz-button
+            nzType="primary"
+            nzShape="circle"
+            (click)="showTranslatorModal()"
+            style="
+              margin-top: 32px;
+              width: 32px;
+              height: 32px;
+              font-size: large;
+              font-weight: bold;
+              padding-top: 0px;
+            "
+          >
+            +
+          </button>
+          <nz-modal
+      [(nzVisible)]="isVisibleTranslator"
+      nzTitle="افزودن مترجم جدید"
+      nzCentered
+      (nzOnCancel)="closeTranslatorModal()"
+      [nzFooter]="null"
+    >
+      <ng-container *nzModalContent>
+        <nz-input-group
+        style="direction: rtl"
+        [nzPrefix]="prefixTemplateUser"
+        nzFooter="modalFooter"
+      >
+        <input
+          #inputt
+          style="margin-right: 4px"
+          type="text"
+          nz-input
+          placeholder="نام مترجم مورد نظر را وارد کنید"
+        />
+        
+      </nz-input-group>
+      <div nz-row nzJustify="center" style="margin-top: 20px;">
+        <div nz-col>
+          <button
+            nz-button
+            [nzType]="'primary'"
+            (click)="
+            closeTranslatorModal(); submitTranslator(inputt.value);
+            "
+          >
+            افزودن
+          </button>
+        </div>
+      </div>
+      <ng-template #prefixTemplateUser
+        ><i nz-icon nzType="user"></i
+      ></ng-template>
+      </ng-container>
+    </nz-modal>
+        </div>
+      </div>
+    </nz-form-item>
+
+    <nz-form-item>
+      <div nz-row>
+        <div nz-col>
+          <nz-form-label nzRequired nzFor="bookType">نــوع کتاب</nz-form-label>
+          <nz-form-control
+            style="width: 376px"
+            nzErrorTip="حداقل یک نوع را انتخاب کنید"
+          >
+            <nz-select
+              #mySelect
+              (ngModelChange)="onOptionsSelected(mySelect.value)"
+              formControlName="bookType"
+              nzShowSearch
+              nzAllowClear
+              nzMode
+              [nzTokenSeparators]="[',']"
+              nzPlaceHolder="نوع کتاب را انتخاب کنید"
+            >
+              <nz-option
+                [nzLabel]="'نسخه الکترونیکی'"
+                [nzValue]="'PDF'"
+              ></nz-option>
+              <nz-option
+                [nzLabel]="'نسخه چاپی'"
+                [nzValue]="'Paper'"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </div>
+
+        <div nz-col style="margin-right: 30px">
+          <nz-form-label nzFor="pagesCount">تعداد صفحات</nz-form-label>
+          <nz-form-control
+            style="width: 376px"
+            nzErrorTip="تعداد صفحات کتاب را وارد کنید"
+          >
+            <input
+              nz-input
+              formControlName="pagesCount"
+              id="pagesCount"
+              placeholder="تعداد صفحات کتاب را وارد کنید"
+            />
+          </nz-form-control>
+        </div>
+      </div>
+    </nz-form-item>
+    <nz-form-item>
+      <div nz-row>
+        <div nz-col>
+          <nz-form-label style="margin-right: 0px" nzRequired nzFor="publisher"
+            >ناشــر</nz-form-label
+          >
+          <nz-form-control
+            style="width: 368px; margin-right: 0px"
+            nzErrorTip="ناشر کتاب را انتخاب کنید"
+          >
+            <nz-select
+              formControlName="publisher"
+              nz-button
+              nzAllowClear
+              nzPlaceHolder="ناشر مورد نظر را انتخاب کنید"
+            >
+              <nz-option
+                [suffixTemplateInfo]="suffixTemplateInfo"
+                *ngFor="let item of listOfPublisher"
+                [nzLabel]="item"
+                [nzValue]="item"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </div>
+        <div nz-col style="transform: translate(+73%, 0%)">
+          <button
+          type="button"
+            nz-button
+            nzType="primary"
+            nzShape="circle"
+            (click)="showPublisherModal()"
+            style="
+              margin-top: 32px;
+              width: 32px;
+              height: 32px;
+              font-size: large;
+              font-weight: bold;
+              padding-top: 0px;
+            "
+          >
+            +
+          </button>
+          <nz-modal
+          [(nzVisible)]="isVisiblePublisher"
+          nzTitle="افزودن ناشر جدید"
+          nzCentered
+          (nzOnCancel)="closePublisherModal()"
+          [nzFooter]="null"
+        >
+          <ng-container *nzModalContent>
+            <nz-input-group
+            style="direction: rtl"
+            [nzPrefix]="prefixTemplateUser"
+            nzFooter="modalFooter"
+          >
+            <input
+              #inputt
+              style="margin-right: 4px"
+              type="text"
+              nz-input
+              placeholder="نام ناشر مورد نظر را وارد کنید"
+            />
+            
+          </nz-input-group>
+          <div nz-row nzJustify="center" style="margin-top: 20px;">
+            <div nz-col>
+              <button
+                nz-button
+                [nzType]="'primary'"
+                (click)="
+                closePublisherModal(); submitPublisher(inputt.value);
+                "
+              >
+                افزودن
+              </button>
+            </div>
+          </div>
+          <ng-template #prefixTemplateUser
+            ><i nz-icon nzType="user"></i
+          ></ng-template>
+          </ng-container>
+        </nz-modal>
+        </div>
+
+        <div nz-col style="margin-right: 0px">
+          <nz-form-label nzRequired nzFor="publishDate">تاریخ انتشار</nz-form-label>
+          <nz-form-control
+            style="width: 376px"
+            nzErrorTip="تاریخ انتشار کتاب را مشخص کنید"
+          >
+          <span class="ant-input-affix-wrapper" style="border-width: 1px;">
+                <input placeholder=" تاریخ انتشار"   onRightNav formControlName="publishDate" [dpDayPicker]="datePickerConfig"  nz-input theme="dp-material"  class="ant-input">
+                <span style="position: absolute; left: -48px;" class="ant-input-suffix">
+                <i nz-icon nzType="calendar" ></i>
+              </span></span> 
+            <ng-template #startDateErrorTpl let-control>
+              <ng-container *ngIf="control.hasError('required')">
+                تاریخ انتشار را وارد کنید
+              </ng-container>
+            </ng-template>
+          </nz-form-control>
+        </div>
+      </div>
+    </nz-form-item>
+  </div>
+  <div class="steps-action" nz-row nzJustify="center">
+    <button nz-button nzType="primary" [disabled]="!addBookForm1.valid">
+      <span>ادامـه</span>
+    </button>
+    <ng-template #tooltip ></ng-template>
+    
+  </div>
+</form>
+
+<!-- Form2 -->
+<form
+  nz-form
+  [formGroup]="addBookForm2"
+  (ngSubmit)="submitForm2()"
+  *ngIf="addBookForm2 && index == 1"
+>
+  <div class="Form2" style="margin-top: 15px">
+    <nz-form-item>
+      <nz-form-label style="margin-right: 70px" nzRequired nzFor="publisher"
+        >آپلود عـکس</nz-form-label
+      >
+      <nz-form-control>
+        <div style="width: 375px" class="clearfix">
+          <nz-upload
+            formControlName="image"
+            [nzMultiple]="'true'"
+            [nzListType]="'picture'"
+            nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            (change)="submitImage()"
+            [(nzFileList)]="imageList"
+          >
+            <button type="button" nz-button><i nz-icon nzType="upload"></i>آپـلود</button>
+          </nz-upload>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <div nz-col>
+        <nz-form-label nzFor="isbn">ISBN</nz-form-label>
+        <nz-form-control style="width: 376px">
+          <input
+            nz-input
+            formControlName="isbn"
+            id="isbn"
+            placeholder="ISBN درج شده روی کتاب را وارد کنید"
+          />
+        </nz-form-control>
+      </div>
+    </nz-form-item>
+
+    <nz-form-item *ngIf="isPaper == true">
+      <div nz-col>
+        <div nz-col>
+          <nz-form-label nzRequired nzFor="bookBranch">محل فعلی کتاب</nz-form-label>
+          <nz-form-control
+            style="width: 376px"
+            nzErrorTip="محل فعلی کتاب را انتخاب کنید"
+          >
+            <nz-select
+              formControlName="bookBranch"
+              id="bookBranch"
+              nzPlaceHolder="محل فعلی کتاب را انتخاب کنید"
+            >
+              <nz-option
+                [nzLabel]="'شعبه‌ی تهران'"
+                [nzValue]="'tehran'"
+              ></nz-option>
+              <nz-option
+                [nzLabel]="'شعبه‌ی کرج'"
+                [nzValue]="'karaj'"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </div>
+      </div>
+    </nz-form-item>
+
+    <nz-form-item *ngIf="isPDF == true">
+      <div nz-col>
+        <div nz-col>
+          <nz-form-label nzRequired nzFor="bookFile">فایل کتاب</nz-form-label>
+          <nz-form-control
+            style="width: 376px"
+            nzErrorTip="فایل کتاب را وارد کنید"
+          >
+            <nz-upload
+              formControlName="bookFile"
+              nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              [nzHeaders]="{ authorization: 'authorization-text' }"
+              (nzChange)="submitFile($event)"
+            >
+              <button type="button" nz-button >
+                <i nz-icon nzType="upload"></i>برای آپلود فایل کتاب کلیک کنید
+              </button>
+            </nz-upload>
+          </nz-form-control>
+        </div>
+      </div>
+    </nz-form-item>
+  </div>
+  <div class="steps-action" nz-row nzJustify="center">
+    <button type="button" nz-button nzType="default" (click)="pre()">
+      <span>قبلی</span>
+    </button>
+    <button type="submit" nz-button nzType="primary" [disabled]="validationForm2()">
+      <span>ادامـه</span>
+    </button>
+  </div>
+</form>
+
+<!-- Form3 -->
+<form
+  nz-form
+  [formGroup]="addBookForm3"
+  (ngSubmit)="submitForm3()"
+  *ngIf="index == 2"
+>
+  <div class="Form3" style="margin-top: 15px">
+    <nz-form-item>
+      <div nz-row>
+        <div nz-col>
+          <nz-form-label style="margin-right: 34px" nzFor="tags"
+            >هشتـگ ها</nz-form-label
+          >
+          <nz-form-control style="width: 726px; margin-right: 34px">
+            <nz-select
+              formControlName="tags"
+              nz-button
+              nzAllowClear
+              nzMode="tags"
+              [nzTokenSeparators]="[',']"
+              nzPlaceHolder="هشتگ های مورد نظر را انتخاب کنید"
+            >
+              <nz-option
+                [suffixTemplateInfo]="suffixTemplateInfo"
+                *ngFor="let item of listOfTags"
+                [nzLabel]="item"
+                [nzValue]="item"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </div>
+        <div nz-col style="transform: translate(+73%, 0%)">
+          <button
+            type="button"
+            nz-button
+            nzType="primary"
+            nzShape="circle"
+            (click)="showTagsModal()"
+            style="
+              margin-top: 32px;
+              width: 32px;
+              height: 32px;
+              font-size: large;
+              font-weight: bold;
+              padding-top: 0px;
+            "
+          >
+            +
+          </button>
+          <nz-modal
+      [(nzVisible)]="isVisibleTags"
+      nzTitle="افزودن هشتگ جدید"
+      nzCentered
+      (nzOnCancel)="closeTagsModal()"
+      [nzFooter]="null"
+    >
+      <ng-container *nzModalContent>
+        <nz-input-group
+        style="direction: rtl"
+        [nzPrefix]="prefixTemplateUser"
+        nzFooter="modalFooter"
+      >
+        <input
+          #inputt
+          style="margin-right: 4px"
+          type="text"
+          nz-input
+          placeholder="نام هشتگ مورد نظر را وارد کنید"
+        />
+        
+      </nz-input-group>
+      <div nz-row nzJustify="center" style="margin-top: 20px;">
+        <div nz-col>
+          <button
+            nz-button
+            [nzType]="'primary'"
+            (click)="
+            closeTagsModal(); submitTags(inputt.value);
+            "
+          >
+            افزودن
+          </button>
+        </div>
+      </div>
+      <ng-template #prefixTemplateUser
+        ><i nz-icon nzType="user"></i
+      ></ng-template>
+      </ng-container>
+    </nz-modal>
+        </div>
+      </div>
+    </nz-form-item>
+
+    <nz-form-item>
+      <div nz-col>
+        <nz-form-label style="align-items: right" nzFor="attachment"
+          >اقلام همراه</nz-form-label
+        >
+        <nz-form-control
+          style="width: 726px"
+        >
+          <input
+            nz-input
+            formControlName="attachment"
+            id="attachment"
+            placeholder="اقلام اضافی کتاب را وارد کنید"
+          />
+        </nz-form-control>
+      </div>
+    </nz-form-item>
+
+    <nz-form-item>
+      <div nz-row>
+        <div nz-col>
+          <nz-form-label nzRequired nzFor="description">توضـیحات</nz-form-label>
+          <nz-form-control style="width: 726px">
+            <nz-textarea-count>
+              <textarea
+                rows="4"
+                formControlName="description"
+                nz-input
+              ></textarea>
+            </nz-textarea-count>
+          </nz-form-control>
+        </div>
+      </div>
+    </nz-form-item>
+  </div>
+  <div class="steps-action" nz-row nzJustify="center">
+    <button type="button" nz-button nzType="default" (click)="pre()">
+      <span>قبلی</span>
+    </button>
+    <button type="submit" nz-button nzType="primary" [disabled]="!addBookForm3.valid">
+      <span>اضافه کردن کتاب</span>
+    </button>
+  </div>
+</form>
+

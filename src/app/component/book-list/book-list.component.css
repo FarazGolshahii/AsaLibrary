@@ -6,3 +6,23 @@
     position: relative;
 
 }
+
+nz-list{
+    direction: ltr;
+}
+
+nz-list-item-meta{
+    direction: rtl;
+}
+
+ul{
+    margin-top: 15px;
+}
+
+div{
+    display: flex !important; 
+    justify-content: center !important;
+}
+nz-pagination{
+    margin-top: 1%;
+}

@@ -1,29 +1,73 @@
 <nz-sider
-    class="menu-sidebar"
-    nzCollapsible
-    nzWidth="256px"
-    nzBreakpoint="md"
-    [(nzCollapsed)]="isCollapsed"
-    [nzTrigger]="null"
-    
-  >
-    <div class="sidebar-logo">
-      <a href="https://ng.ant.design/" target="_blank">
-        <h1 style="color: rgb(0, 131, 163);">Asa Library</h1>
-        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo" />
-      </a>
-    </div>
-    <div >
-    <ul nz-menu nzMode="inline" style="background-color: transparent;" >
-        <li nz-icon [nzType]="'dashboard'" nz-menu-item nzSelected><h4><span>صفحه اصــلی</span></h4></li>
-        <li nz-icon [nzType]="'book'" nz-menu-item><h4><span>کتـابهای من</span></h4></li>
-        <li nz-icon [nzType]="'appstore-add'"nz-menu-item><h4><span>افزودن کتـاب</span></h4></li>
-        <li nz-menu-item><h4><span>Option 4</span></h4></li>
-        <li nz-menu-item><h4><span>Option 5</span></h4></li>
-    </ul>
-    <ng-template #dashboard>
-      <i nz-icon [nzType]="'dashboard'"></i>
-    </ng-template>
+  class="menu-sidebar"
+  nzCollapsible
+  nzWidth="256px"
+  nzBreakpoint="md"
+  [(nzCollapsed)]="isCollapsed"
+  [nzTrigger]="null"
+>
+  <div class="sidebar-logo">
+    <a href="https://ng.ant.design/" target="_blank">
+      <h1 *ngIf="isCollapsed==false">Asa Library</h1>
+    </a>
+    <span  class="header-trigger" style="margin-right: 30px;" (click)="isCollapsed = !isCollapsed">
+      <i style="color: #FFFFFF;" class="trigger"
+         nz-icon
+         [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+      ></i>
+  </span>
     
   </div>
-  </nz-sider>
+  <div>
+    <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed"> 
+      <li
+        class="sidebarIcon"
+        routerLink="/dashboard"
+        nz-menu-item
+        nzSelected
+        nzMatchRouter
+      >
+      <div nz-row>
+        <div class="sidebar-title" nz-col> 
+        <h4 *ngIf="isCollapsed==false"><span>صفحه اصــلی</span></h4>
+        </div>
+        <i nz-icon [nzType]="'dashboard'"></i>
+      </div>
+      </li>
+      <li class="sidebarIcon" routerLink="/myactivity" nz-menu-item nzMatchRouter>
+        <div nz-row>
+          <div class="sidebar-title" nz-col>
+        <h4 *ngIf="isCollapsed==false"><span >کتاب های من</span></h4>
+          </div>
+        <i nz-icon [nzType]="'book'"></i>
+      </div>
+      </li>
+      <li class="sidebarIcon" routerLink="/addBook" nz-menu-item nzMatchRouter>
+        <div nz-row>
+          <div class="sidebar-title" nz-col> 
+            <h4 *ngIf="isCollapsed==false"><span>افزودن کتـاب</span></h4>
+          </div>
+          <i nz-icon [nzType]="'appstore-add'" ></i>
+        </div>
+      </li>
+      <div class="setBottom">
+      <li class="sidebarIcon" nz-menu-item nzMatchRouter >
+        <div nz-row>
+          <div class="sidebar-title" nz-col> 
+          <h4 *ngIf="isCollapsed==false"><span>پـروفایل</span></h4>
+          </div>
+        <i nz-icon [nzType]="'user'"></i>
+        </div>
+      </li>
+      <li class="sidebarIcon" nz-menu-item nzMatchRouter>
+        <div nz-row>
+          <div class="sidebar-title" nz-col> 
+          <h4 *ngIf="isCollapsed==false"><span>تنظیمات</span></h4>
+          </div>
+        <i nz-icon [nzType]="'setting'"></i>
+        </div>
+      </li>
+    </div>
+    </ul>
+  </div>
+</nz-sider>

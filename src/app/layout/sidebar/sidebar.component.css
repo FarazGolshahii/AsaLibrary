@@ -4,29 +4,35 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-*{
+* {
   direction: rtl !important;
 }
 .app-layout {
   height: 100vh;
 }
 .ant-layout-sider {
-    background: #fff;
+  background: #422e5db4;
 }
-.sidebar-logo{
-    background: #fff;
+.sidebar-logo {
+  background: rgb(114, 0, 0);
 }
 .menu-sidebar {
   position: fixed;
   z-index: 10;
   min-height: 100vh;
-  box-shadow: 2px 0 6px rgba(0,21,41,.35);
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
 }
-
-
+  
 .trigger:hover {
   color: #1890ff;
 }
+
+.setBottom{
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+}
+
 
 .sidebar-logo {
   position: relative;
@@ -34,37 +40,59 @@
   padding-left: 24px;
   overflow: hidden;
   line-height: 64px;
-  background: rgb(240, 240, 240);
-  transition: all .3s;
+  background:linear-gradient(to right, rgb(35,47,62),rgb(22, 30, 39));;
+  transition: all 0.3s;
 }
 
-[nz-menu-item]{
+[nz-menu-item] {
   background-color: transparent;
-  display: flex; 
+  display: flex;
   direction: rtl;
   padding-top: 20px;
   height: 60px;
 }
 .sidebar-logo img {
-  display: inline-block;
+  position: absolute;
+  margin-top: 16px;
+  left: 28%;
   height: 32px;
   width: 32px;
-  vertical-align: middle;
+  vertical-align: center;
 }
 
 .sidebar-logo h1 {
   display: inline-block;
-  margin: 0 0 0 20px;
+  margin-right:60px;
   color: #fff;
   font-weight: 600;
   font-size: 14px;
-  font-family: Avenir,Helvetica Neue,Arial,Helvetica,sans-serif;
+  font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
   vertical-align: middle;
 }
 
-nz-sider{
-    position: fixed;
-    padding: 0;
-    width: 100%;
-    z-index: 2;
+nz-sider {
+  position: fixed;
+  padding: 0;
+  width: 100%;
+  z-index: 2;
+}
+h1 {
+  color: rgb(0, 131, 163);
+}
+ul {
+  background-color: transparent;
+}
+
+li h4{
+  color: #FFFFFF;
+}
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
+  background-color: #422e5d65;
+}
+.sidebar-title{
+  transform: translate(0px , -10px);
+}
+[nz-icon]{
+  font-size: 23px;
+  color: #c7c7c7
 }

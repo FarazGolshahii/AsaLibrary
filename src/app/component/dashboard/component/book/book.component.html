@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="bg">
+    <nz-card nzHoverable [nzCover]="coverTemplate"> </nz-card>
+    <div class="overlay" (click)="log()">
+      <h3>{{ item.name }}</h3>
+      <span *ngFor="let autherItem of item.author"> {{ autherItem }} ,</span>
+      <nz-rate style="width: 20px" [ngModel]="item.rate" nzDisabled></nz-rate>
+    </div>
+  </div>
+</div>
+
+<ng-template #coverTemplate>
+  <img alt="example" src="{{ item.imgSrc }}" />
+</ng-template>

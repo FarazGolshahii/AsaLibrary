@@ -1,13 +1,11 @@
 <nz-list
   nzItemLayout="vertical"
-  style="direction: ltr"
-  [nzPagination]="pagination"
 >
   <nz-list-item *ngFor="let item of BookList" class="card">
     
-    <nz-list-item-meta style="direction: rtl">
+    <nz-list-item-meta>
       <nz-list-item-meta-title>
-        <a href="{{ item.name }}"
+        <a routerLink="/bookdetails/1"
           ><h4>{{ item.name }}</h4></a
         >
       </nz-list-item-meta-title>
@@ -25,7 +23,7 @@
       </nz-list-item-meta-description>
     </nz-list-item-meta>
 
-    <ul nz-list-item-actions class="rate" style="margin-top: 15px">
+    <ul nz-list-item-actions class="rate">
       <nz-list-item-action
         ><nz-rate [ngModel]="item.rate" nzDisabled></nz-rate
       ></nz-list-item-action>
@@ -34,42 +32,12 @@
       <img width="120" height="180" alt="logo" src="{{ item.imgSrc }}" />
     </nz-list-item-extra>
   </nz-list-item>
-  <ng-template
-    #pagination
-    style="display: flex !important; justify-content: center !important"
-  >
+  <div>
     <nz-pagination
-      style="margin-top: 1%"
       [nzPageIndex]="1"
       [nzTotal]="TotalData"
       [nzPageSize]="4"
       [nzPageSizeOptions]="[4, 8, 12]"
     ></nz-pagination>
-  </ng-template>
+  </div>
 </nz-list>
-
-<!-- card template -->
-<!-- <nz-list nzItemLayout="vertical"  *ngFor="let item of BookList">
-    <nz-card style="width:100%; height: 300px ; margin-top: 1%; border-radius: 8px; direction: rtl;" [nzTitle]="title" [nzExtra]="extraTemplate"  class="card">
-          <div nz-row>
-            <div nz-col><img width="120" height="180" alt="logo" src="{{item.imgSrc}}" /></div>
-            <div nz-col>
-            <nz-list-item-meta-description >
-              <span>موضـوع: </span> <span *ngFor="let categoryItem of item.category"> {{ categoryItem }} ,</span>
-              <br>  
-              <span>نویسندگـان: </span> <span *ngFor="let autherItem of item.author"> {{ autherItem }} ,</span>
-            </nz-list-item-meta-description>   
-           </div>
-          </div>
-        </nz-card>
-        <ng-template #title>
-          <div nz-row>
-            <div nz-col><h3>{{item.name}}</h3></div>
-            <div nz-col style="float: left;"><nz-rate nz-title style="direction: ltr !important " [ngModel]=item.rate nzDisabled></nz-rate></div>
-            
-          
-          </div>
-          
-        </ng-template>
-        
-      </nz-list> -->

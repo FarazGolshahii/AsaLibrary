@@ -1,4 +1,4 @@
-import { BookList } from './../Interfaces/Booklist';
+import { BookList } from './models/book-list-data-model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

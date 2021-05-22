@@ -1,0 +1,62 @@
+<!-- <div style="border: solid rgb(196, 155, 155);" nz-row nzJustify="center" *ngIf="validMessage">{{Message}}</div> -->
+<div nz-row nzJustify="center">
+
+  <form wit nz-form [formGroup]="borrowForm" class="login-form" (ngSubmit)="submitForm()" *ngIf="borrowForm">
+    <nz-form-item>
+      <nz-form-control style="width: 300px;" [nzErrorTip]="userErrorTpl">
+        <nz-select [ngModel]="optionalOptions.value" formControlName="branch" nzAllowClear nzShowSearch
+          nzPlaceHolder="شعبه مورد نظر خود را انتخاب کنید">
+          <nz-option [nzLabel]="optionalOptions.viewValue" [nzValue]="optionalOptions.value"></nz-option>
+        </nz-select>
+        <ng-template #userErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required') ">
+            شعبه مورد نظر خود را وارد کنید
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzErrorTip]="startDateErrorTpl">
+        <span class="ant-input-affix-wrapper" style="border-width: 1px;">
+          <input placeholder=" تاریخ شروع امانت" onRightNav formControlName="startDate" [dpDayPicker]="datePickerConfig"
+            nz-input theme="dp-material" />
+          <!-- (ngModelChange)="validateConfirmPassword()" -->
+          <span class="ant-input-suffix">
+            <i nz-icon nzType="calendar"></i>
+          </span>
+        </span>
+        <ng-template #startDateErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">
+            تاریخ شروع امانت را وارد کنید
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control [nzErrorTip]="endDateErrorTpl">
+        <!-- <dp-date-picker mode="day" placeholder="تاریخ" formControlName="estimateDate"   theme="dp-material"  [(ngModel)]="selectedDate"></dp-date-picker> -->
+        <span class="ant-input-affix-wrapper" style="border-width: 1px;">
+          <input placeholder=" تاریخ برگشت کتاب" onRightNav formControlName="estimateDate"
+            [dpDayPicker]="datePickerConfig" nz-input theme="dp-material" class="ant-input">
+          <span class="ant-input-suffix">
+            <i nz-icon nzType="calendar"></i>
+          </span></span>
+
+        <ng-template #endDateErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">
+            لطفا تاریخ برگشت را وارد نمایید
+          </ng-container>
+          <ng-container *ngIf="control.hasError('confirm')">
+            تاریخ برگشت باید بزرگتر از تاریخ شروع باشد
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+
+    <button nz-button [disabled]="!borrowForm.valid" class="login-form-button login-form-margin"
+      [nzType]="'primary'">ذخیره</button>
+
+  </form>
+</div>

@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  isCollapsed = false;
+  
+  isCollapsed :boolean =  false;
   constructor(private router:Router) { }
   isactive=true;
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
   onClick(){
     this.router.navigate(['/search']);
   }

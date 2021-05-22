@@ -1,48 +1,89 @@
 <nz-header>
-  <div class="app-header" style="margin-right: 13%;">
+  <div class="app-header">
     <div nz-row>
       <div nz-col nzSpan="8">
-        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-          <button nz-button nzType="primary" (click)="toggleCollapsed()">
-          <i nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
-        </button>
-        </span>
         
       </div>
-      <!-- searchBox Section -->   
-         
-      <div nz-col nzSpan="6" style="margin-right: 4%">
+      <!-- searchBox Section -->
+
+      <div nz-col nzSpan="6" class="middleCol">
         <div>
-          <nz-input-group [nzPrefix]="searchIcon">
-            <input theme="dp-material" nz-input  [(ngModel)]="inputValue" (input)="onInput($event)" (keydown.enter)="Onclick()" [nzAutocomplete]="auto"/>
-            <nz-autocomplete [nzDataSource]="options" nzBackfill #auto></nz-autocomplete>
+          <nz-input-group [nzPrefix]="searchIcon" [nzSuffix]="AvdanceSearch">
+            <input
+              theme="dp-material"
+              nz-input
+              [(ngModel)]="inputValue"
+              (input)="onInput($event)"
+              (keydown.enter)="searchClick()"
+              [nzAutocomplete]="auto"
+            />
+            <nz-autocomplete
+              [nzDataSource]="options"
+              nzBackfill
+              #auto
+            ></nz-autocomplete>
           </nz-input-group>
           <ng-template #searchIcon>
-            <button nz-button nzSize="small" style="border: 0;" nzSearch  >
-              <i nz-icon nzType="search" (click)="Onclick()" ></i>
+            <button nz-button nzSize="small" nzSearch>
+              <i style="color: rgb(19,25,33);" nz-icon nzType="search" (click)="searchClick()"></i>
             </button>
+          </ng-template>
+          <ng-template #AvdanceSearch>
+            <button
+              nz-button
+              nzSize="small"
+              nzTrigger="click"
+              nzPlacement="bottomRight"
+              nzSearch
+              nz-dropdown
+              [nzDropdownMenu]="CheckboxList"
+            >
+              <i style="color: rgb(19,25,33);" nz-icon nzType="setting"></i>
+            </button>
+            <nz-dropdown-menu #CheckboxList="nzDropdownMenu">
+              <div>
+                <ul
+                  class="CheckboxListUl"
+                  nz-menu
+                  nzSelectable
+                  *ngFor="let item of searchCheckboxItem"
+                >
+                  <li
+                    nz-menu-item
+                    nz-checkbox
+                    [nzValue]="item.value"
+                    [ngModel]="item.checked"
+                    (change)="item.checked = !item.checked; log()"
+                  >
+                    <p>{{ item.label }}</p>
+                  </li>
+                </ul>
+              </div>
+            </nz-dropdown-menu>
           </ng-template>
         </div>
       </div>
       <!-- profile Section -->
-      <div nz-col style="margin-right: 25%">
+      <div nz-col class="leftCol">
         <div>
-          <nz-page-header style="padding-top: 6px" class="site-page-header" nz-dropdown [nzDropdownMenu]="menu">
+          <nz-page-header
+            class="site-page-header"
+            nz-dropdown
+            [nzDropdownMenu]="menu"
+          >
             <nz-avatar
+            style="background: #FFFFFF;"
               nz-page-header-avatar
-              style="width: 40px; height: 40px"
+              
               nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
             ></nz-avatar>
-            <nz-page-header-subtitle
-            style="margin-top: 4%; padding-left: 14px;"
-              >Full Name</nz-page-header-subtitle
-            >
+            <nz-page-header-subtitle style="color: #FFFFFF; margin-bottom: 4px">Full Name</nz-page-header-subtitle>
             <nz-dropdown-menu #menu="nzDropdownMenu">
               <ul nz-menu nzSelectable>
                 <li nz-menu-item>Profile</li>
                 <li nz-menu-item>Setting</li>
                 <li nz-menu-item nzDanger>Log Out</li>
-              </ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+              </ul>
             </nz-dropdown-menu>
           </nz-page-header>
         </div>

@@ -1,0 +1,23 @@
+<nz-card nzType="inner" [nzTitle]="NewBookTitle" >  
+<div nz-row nzJustify="end" style="align-items: center;" >
+<div style="width: 188px; margin-top: 10px;" *ngFor="let item of bookList">
+    <app-book nz-col [nzXs]="{ span: 12, offset: 1 }" [nzLg]="{ span: 24, offset: 2 }" [item]="item"></app-book>
+</div>
+</div>
+</nz-card>
+
+<nz-card nzType="inner" style="margin-top: 40px;" [nzTitle]="popularBookTitle">  
+  <div nz-row nzJustify="end"  style=" align-items: center;" >
+  <div style="width: 188px; margin-top: 10px;" *ngFor="let item of bookList">
+    <app-book nz-col [nzXs]="{ span: 12, offset: 1 }" [nzLg]="{ span: 24, offset: 2 }" [item]="item"></app-book>
+  </div>
+  </div>
+  </nz-card>
+  <app-piechart></app-piechart>
+
+<ng-template #NewBookTitle >
+  <h4><span>جدیـــــدترین کتـــــاب ها</span></h4>
+</ng-template>
+<ng-template #popularBookTitle >
+  <h4><span>پربازدیــدترین کتـــــاب ها</span></h4>
+</ng-template>

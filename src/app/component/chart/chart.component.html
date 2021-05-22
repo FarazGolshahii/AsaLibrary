@@ -1,0 +1,43 @@
+<div nz-row nzJustify="center" style="margin-top: 60px;">
+    <nz-card nz-col style="margin-right: 0px; ">
+        <nz-card-meta [nzAvatar]="avatarTemplateRight" nzTitle="تـعداد کل کتابها"
+            nzDescription=" 12 کتاب در کتابخانه موجود است."></nz-card-meta>
+    </nz-card>
+    <nz-card nz-co>
+        <nz-card-meta [nzAvatar]="avatarTemplateMiddle" nzTitle="محبوب ترین موضوع" nzDescription="ورزشــی">
+        </nz-card-meta>
+    </nz-card>
+    <nz-card nz-col>
+        <nz-card-meta [nzAvatar]="avatarTemplateLeft" nzTitle="محبوب ترین کتاب"
+            nzDescription="Mastering Algorithms with C"></nz-card-meta>
+    </nz-card>
+</div>
+<ng-template #avatarTemplateLeft>
+    <nz-avatar [nzSize]="72" nzSrc="https://cdn3.iconfinder.com/data/icons/digital-marketing-3-1/512/139-512.png">
+    </nz-avatar>
+</ng-template>
+<ng-template #avatarTemplateMiddle>
+    <nz-avatar style="background-color: #FFFFFF;" [nzSize]="72" nzSrc="https://iconfair.com/cepsools/2020/10/Artboard-8-12.png"></nz-avatar>
+</ng-template>
+<ng-template #avatarTemplateRight>
+    <nz-avatar [nzSize]="72"
+        nzSrc="https://icons-for-free.com/iconfiles/png/512/bookshelf+library+icon-1320087270870761354.png"></nz-avatar>
+</ng-template>
+<div nz-row nzJustify="center" style="margin-top: 40px;">
+    <div nz-col nzSpan="10">
+        <label>
+            <h3>امتیاز 5 کتاب برتر </h3>
+        </label>
+        <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+            [colors]="donutColors" [legend]="pieChartLegend" [options]="pieChartOptions">
+        </canvas>
+    </div>
+    <div nz-col nzSpan="10">
+        <label>
+            <h3>میانگین امتیاز هر موضوع</h3>
+        </label>
+        <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+            [colors]="donutColors" [legend]="pieChartLegend" [options]="pieChartOptions">
+        </canvas>
+    </div>
+</div>

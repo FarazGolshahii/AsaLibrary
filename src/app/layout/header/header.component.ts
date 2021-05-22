@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
+import { BookServiceApi } from 'src/app/Common/services/book.service';
 
 @Component({
   selector: 'app-header',
@@ -8,12 +9,15 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   
-  @Input() isCollapsed = false;
-  toggleCollapsed(): void {
-    this.isCollapsed = !this.isCollapsed;
-  }
+  
+  searchValue:string="";
+  searchCheckboxItem=[
+    {label:"نام کـتاب",value:"name",checked:true },
+    {label:"موضوع کـتاب",value:"category",checked:true },
+    {label:"نام نویسنده",value:"author",checked:true },
+  ]
   inputValue?: string;
-  searchValue:string=""
+  
   options: string[] = [];
 
   onInput(event: Event): void {
@@ -22,13 +26,21 @@ export class HeaderComponent implements OnInit {
       this.options = value ? [value, value + "Book", value + value + " "+ value] : [];      
     }
   }
-  constructor(private route:Router) { }
+ 
+  constructor(private route:Router,private bookService:BookServiceApi) { }
 
   ngOnInit(): void {
+    this.bookService.tagSearchObs.subscribe(res => this.inputValue = res)
   }
-  Onclick(){
+  searchClick(){
+    debugger
     this.searchValue=this.inputValue
     this.route.navigate(['/search'])
     console.log(this.searchValue);
   }
+  log(){
+    console.log(this.searchCheckboxItem);  
+  }
+
+
 }

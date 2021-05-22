@@ -1,0 +1,47 @@
+<div style="height: 937px;
+display: flex;
+justify-content: center;  ">
+  <nz-card
+    style="
+    top: 27%;
+    width: 55%;
+    height: 400px;
+    "
+  >
+  <div nz-row>
+      <div nz-col>
+  <img alt="example" style="width: 580px; height: 350px;" src="https://i.postimg.cc/rynH1J4Y/image.png" />
+      </div>
+    <div nz-col style="">
+        <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+            <h3><span>ورود اعضا</span></h3>
+            <nz-form-item>
+              <nz-form-control nzErrorTip="نام کاربری را وارد کنید">
+                <nz-input-group nzPrefixIcon="user">
+                  <input type="text" nz-input formControlName="userName" placeholder="نام کاربری" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control nzErrorTip="رمز عبور را وارد کنید">
+                <nz-input-group nzPrefixIcon="lock">
+                  <input type="password" nz-input formControlName="password" placeholder="رمز عبور" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <div nz-row class="login-form-margin">
+              <div nz-col [nzSpan]="16">
+                <label nz-checkbox formControlName="remember">
+                  <span>اطلاعات ذخیره </span>
+                </label>
+              </div>
+              <div nz-col [nzSpan]="16" >
+                <a class="login-form-forgot">فراموش کردن رمز عبور</a>
+              </div>
+            </div>
+            <button style="left: -50%; width: 150px;" nz-button class="login-form-button login-form-margin" [nzType]="'primary'">ورود</button>
+          </form>
+    </div>
+  </div>
+  </nz-card>
+</div>
